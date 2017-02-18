@@ -13,7 +13,7 @@ import com.example.mlen.mytwitch.utils.DownloadImageTask;
  * Created by mlen on 2/17/17.
  */
 
-public class StreamsRecyclerAdapter extends RecyclerView.Adapter<MyViewHolder>{
+public class StreamsRecyclerAdapter extends RecyclerView.Adapter<StreamsRecyclerViewHolder>{
         LayoutInflater inflater;
         Stream[] streams;
         public StreamsRecyclerAdapter(Context c, Stream[] streams) {
@@ -21,13 +21,13 @@ public class StreamsRecyclerAdapter extends RecyclerView.Adapter<MyViewHolder>{
             this.streams = streams;
         }
         @Override
-        public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-            MyViewHolder vh = new MyViewHolder(inflater.inflate(R.layout.stream_view, null));
+        public StreamsRecyclerViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+            StreamsRecyclerViewHolder vh = new StreamsRecyclerViewHolder(inflater.inflate(R.layout.stream_view, null));
             return vh;
         }
 
         @Override
-        public void onBindViewHolder(MyViewHolder holder, int position) {
+        public void onBindViewHolder(StreamsRecyclerViewHolder holder, int position) {
 
             holder.recyclerView.setTitle(streams[position].getChannel().getName());
             holder.recyclerView.setGame(streams[position].getGame());

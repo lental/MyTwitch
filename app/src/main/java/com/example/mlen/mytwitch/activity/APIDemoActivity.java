@@ -12,7 +12,7 @@ import com.example.mlen.mytwitch.api.GetAccessTokenAsyncTask;
 import com.example.mlen.mytwitch.model.TwitchAccessToken;
 import com.example.mlen.mytwitch.utils.Utils;
 
-public class MainActivity extends MyTwitchNavigationActivity{
+public class APIDemoActivity extends MyTwitchNavigationActivity {
 
     TwitchAccessToken storedToken;
     @Override
@@ -22,6 +22,7 @@ public class MainActivity extends MyTwitchNavigationActivity{
         getLayoutInflater().inflate(R.layout.content_main, contentWrapper);
 
 
+        // Button for getting Access Token and displaying it
         Button btnGetToken = (Button)findViewById(R.id.btn_get_access_token);
         btnGetToken.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -37,6 +38,7 @@ public class MainActivity extends MyTwitchNavigationActivity{
             }
         });
 
+        // Button for generating the m3u8 based on the token
         Button btnGenerateUrl = (Button)findViewById(R.id.btn_generate_url);
         btnGenerateUrl.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -49,13 +51,14 @@ public class MainActivity extends MyTwitchNavigationActivity{
             }
         });
 
+        // Button to play the video with the generated URL
         Button btnPlay = (Button)findViewById(R.id.btn_play);
         btnPlay.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 // Create a new intent with url as extra
                 TextView txtGenerateUrl = (TextView)findViewById(R.id.txt_generate_url);
-                Intent playerIntent = new Intent(MainActivity.this, PlayerActivity.class);
+                Intent playerIntent = new Intent(APIDemoActivity.this, PlayerActivity.class);
                 playerIntent.putExtra("url", txtGenerateUrl.getText());
                 startActivity(playerIntent);
             }

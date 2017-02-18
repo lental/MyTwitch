@@ -24,15 +24,15 @@ public class GetAccessTokenAsyncTask extends AsyncTask<String, Void, TwitchAcces
     @Override
     protected TwitchAccessToken doInBackground(String... params) {
         if (params.length == 0) return null;
-        String channelName = params[0];
+            String channelName = params[0];
 
-        try {
-            String tokenText  = Utils.executeGet("https://api.twitch.tv/api/channels/" + channelName + "/access_token");
-            Gson gson = new Gson();
-            TwitchAccessToken token = gson.fromJson(tokenText, TwitchAccessToken.class);
-            return token;
-        } catch (IOException e) {
-            return null;
+            try {
+                String tokenText  = Utils.executeGet("https://api.twitch.tv/api/channels/" + channelName + "/access_token");
+                Gson gson = new Gson();
+                TwitchAccessToken token = gson.fromJson(tokenText, TwitchAccessToken.class);
+                return token;
+            } catch (IOException e) {
+                return null;
         }
     }
 

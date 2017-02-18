@@ -48,8 +48,9 @@ public class MyTwitchNavigationActivity extends AppCompatActivity
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.main, menu);
-        return true;
+//        getMenuInflater().inflate(R.menu.main, menu);
+//        return true;
+        return false;
     }
 
     @Override
@@ -79,7 +80,7 @@ public class MyTwitchNavigationActivity extends AppCompatActivity
             startActivity(intent);
         } else if (id == R.id.nav_api) {
             // Handle the api action
-            Intent intent = new Intent(this, MainActivity.class);
+            Intent intent = new Intent(this, APIDemoActivity.class);
             startActivity(intent);
         }
 

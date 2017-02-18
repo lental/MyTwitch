@@ -26,7 +26,7 @@ public class ChannelActivity extends MyTwitchNavigationActivity {
         super.onCreate(savedInstanceState);
         CoordinatorLayout contentWrapper = (CoordinatorLayout)findViewById(R.id.content_wrapper);
         getLayoutInflater().inflate(R.layout.channel, contentWrapper);
-//        setContentView(R.layout.channel);
+
         GetStreamsAsyncTask task = new GetStreamsAsyncTask(new GetStreamsAsyncTask.GetStreamsCallback() {
             @Override
             public void onStreams(StreamsRequest streams) {

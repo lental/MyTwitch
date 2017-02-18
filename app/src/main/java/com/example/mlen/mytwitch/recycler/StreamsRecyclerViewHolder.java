@@ -11,9 +11,9 @@ import com.example.mlen.mytwitch.R;
  * Created by mlen on 2/16/17.
  */
 
-public class MyViewHolder extends RecyclerView.ViewHolder {
+public class StreamsRecyclerViewHolder extends RecyclerView.ViewHolder {
     public StreamsRecyclerView recyclerView;
-    public MyViewHolder(View itemView) {
+    public StreamsRecyclerViewHolder(View itemView) {
         super(itemView);
         recyclerView = (StreamsRecyclerView) itemView.findViewById(R.id.recycler_main);
     }
