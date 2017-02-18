@@ -1,4 +1,4 @@
-package com.example.mlen.mytwitch;
+package com.example.mlen.mytwitch.model;
 
 /**
  * Created by mlen on 2/17/17.
@@ -26,5 +26,14 @@ public class TwitchAccessToken {
 
     public void setSig(String sig) {
         this.sig = sig;
+    }
+
+
+    @Override
+    public String toString() {
+        return "TwitchAccessToken{" +
+                "token='" + token + '\'' +
+                ", sig='" + sig + '\'' +
+                '}';
     }
 }
