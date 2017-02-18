@@ -4,8 +4,6 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.design.widget.CoordinatorLayout;
-import android.support.v7.app.AppCompatActivity;
-
 import com.example.mlen.mytwitch.R;
 import com.example.mlen.mytwitch.api.GetAccessTokenAsyncTask;
 import com.example.mlen.mytwitch.model.TwitchAccessToken;
@@ -33,6 +31,7 @@ public class PlayerActivity extends MyTwitchNavigationActivity {
     private SimpleExoPlayer player;
     private static final DefaultBandwidthMeter BANDWIDTH_METER = new DefaultBandwidthMeter();
     String channelName = null;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

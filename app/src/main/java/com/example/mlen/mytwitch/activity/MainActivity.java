@@ -2,20 +2,8 @@ package com.example.mlen.mytwitch.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.CoordinatorLayout;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.view.View;
-import android.support.design.widget.NavigationView;
-import android.support.v4.view.GravityCompat;
-import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBarDrawerToggle;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
-import android.view.Menu;
-import android.view.MenuItem;
-import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -35,7 +23,6 @@ public class MainActivity extends MyTwitchNavigationActivity{
 
 
         Button btnGetToken = (Button)findViewById(R.id.btn_get_access_token);
-
         btnGetToken.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -62,7 +49,6 @@ public class MainActivity extends MyTwitchNavigationActivity{
             }
         });
 
-
         Button btnPlay = (Button)findViewById(R.id.btn_play);
         btnPlay.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -72,20 +58,17 @@ public class MainActivity extends MyTwitchNavigationActivity{
                 Intent playerIntent = new Intent(MainActivity.this, PlayerActivity.class);
                 playerIntent.putExtra("url", txtGenerateUrl.getText());
                 startActivity(playerIntent);
-
             }
         });
 
     }
 
     public void setTokenText(TwitchAccessToken token) {
-
         TextView txtGetToken = (TextView)findViewById(R.id.txt_get_access_token);
         txtGetToken.setText(token.toString());
     }
 
     public void setUrlText(String text) {
-
         TextView txtGenerateUrl = (TextView)findViewById(R.id.txt_generate_url);
         txtGenerateUrl.setText(text);
     }

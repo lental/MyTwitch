@@ -14,7 +14,8 @@
             android:theme="@style/AppTheme.NoActionBar">
         </activity>
         <activity android:name=".activity.PlayerActivity"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar"
+            android:configChanges="keyboardHidden|orientation|screenSize"></activity>
         <activity android:name=".activity.ChannelActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>

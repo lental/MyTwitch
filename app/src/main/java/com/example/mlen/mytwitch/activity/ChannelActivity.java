@@ -2,7 +2,6 @@ package com.example.mlen.mytwitch.activity;
 
 import android.os.Bundle;
 import android.support.design.widget.CoordinatorLayout;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
