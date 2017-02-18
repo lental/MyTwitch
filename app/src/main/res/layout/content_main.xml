@@ -20,7 +20,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Press the three buttons in order to play, or go to side-nav for 'Channels'" />
+        android:text="NOTE: This will not work unless 'lenkid' is streaming.\n\nPress the three buttons in order to play, or go to side-nav for 'Channels'" />
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
