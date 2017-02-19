@@ -4,8 +4,12 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.design.widget.CoordinatorLayout;
+import android.widget.RelativeLayout;
+
 import com.example.mlen.mytwitch.R;
 import com.example.mlen.mytwitch.api.GetAccessTokenAsyncTask;
+import com.example.mlen.mytwitch.ima.IMAController;
+import com.example.mlen.mytwitch.ima.IMAUtils;
 import com.example.mlen.mytwitch.model.TwitchAccessToken;
 import com.example.mlen.mytwitch.utils.Utils;
 import com.google.android.exoplayer2.DefaultLoadControl;
@@ -29,6 +33,7 @@ import com.google.android.exoplayer2.upstream.DefaultHttpDataSourceFactory;
 
 public class PlayerActivity extends MyTwitchNavigationActivity {
     private SimpleExoPlayer player;
+    private IMAController imaController;
     private static final DefaultBandwidthMeter BANDWIDTH_METER = new DefaultBandwidthMeter();
     String channelName = null;
 
@@ -43,11 +48,18 @@ public class PlayerActivity extends MyTwitchNavigationActivity {
         simpleExoPlayerView.requestFocus();
         simpleExoPlayerView.setPlayer(player);
 
+        RelativeLayout wrapper = (RelativeLayout)findViewById(R.id.player_wrapper);
+        imaController = new IMAController(this, player, wrapper);
         String url = null;
         if (getIntent().getExtras() != null) {
             Bundle extras = getIntent().getExtras();
             url = extras.getString("url");
             channelName = extras.getString("channelName");
+
+            String adTag = IMAUtils.generateAdTag("https://pubads.g.doubleclick.net/gampad/live/ads?iu=[iu]&ius_szs=300x250&sz=640x480&gdfp_req=1&env=vp&output=xml_vast3&url=[url]&correlator=[timestamp]&cust_params=[cust_params]&unviewed_position_start=1&eid=567890291&sdkv=h.3.158.1&sdki=3c0d&scor=1584445166772916&adk=2615417281&osd=2&frm=0&sdr=1&afvsz=200x200%2C250x250%2C300x250%2C336x280%2C450x50%2C468x60%2C480x70&ciu_szs=300x60%2C300x250&ged=ve4_td9_tt2_pd9_la9000_er238.80.394.380_vi0.0.926.735_vp100_eb24171", channelName);
+
+            imaController.requestAds(adTag);
+
         }
 
         if (url != null) {
@@ -82,4 +94,25 @@ public class PlayerActivity extends MyTwitchNavigationActivity {
         MediaSource source = new HlsMediaSource(uri, dataFactory, new Handler(), null);
         player.prepare(source);
     }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        imaController.onResume();
+        player.setPlayWhenReady(true);
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        imaController.onPause();
+        player.setPlayWhenReady(false);
+    }
+    @Override
+    protected void onDestroy() {
+        super.onPause();
+        player.setPlayWhenReady(false);
+
+    }
+
 }

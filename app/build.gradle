@@ -33,5 +33,9 @@ dependencies {
     compile 'com.google.android.exoplayer:exoplayer:r2.2.0'
     compile 'com.android.support:recyclerview-v7:+'
 
+
+    compile 'com.google.ads.interactivemedia.v3:interactivemedia:3.6.0'
+    compile 'com.google.android.gms:play-services-ads:9.8.0'
+
     testCompile 'junit:junit:4.12'
 }
