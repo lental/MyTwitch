@@ -2,6 +2,8 @@
 
 A twitch app built from scratch.  I inspected twitch's API calls through Charles/Network logs and re-purposed them for this application.
 
+I also inspected Twitch's IMA ad usage, and implemented IMA Ad Prerolls into the app
+
 There are three Activities:
 
 * ChannelActivity: a list of the top 25 active streams on Twitch
@@ -10,10 +12,15 @@ There are three Activities:
 
 To make this I used:
 * Twitch's stream and auth_token APIs
+* Google IMA
 * gson
 * okhttp
 * RecyclerView
 * ExoPlayer
 * AsyncTasks
 * Navigation Views
+* Charles
 
+Time:
+Session 1: ~5 hours for most of the app
+Sesssion 2: 1.5 hours for IMA integration
