@@ -2,7 +2,6 @@ package com.example.mlen.mytwitch.ima;
 
 import android.content.Context;
 import android.util.Log;
-import android.view.View;
 import android.view.ViewGroup;
 
 import com.google.ads.interactivemedia.v3.api.AdDisplayContainer;
@@ -19,6 +18,7 @@ import com.google.android.exoplayer2.SimpleExoPlayer;
 
 /**
  * Created by mlen on 2/19/17.
+ * Mostly ripped from IMA BasicSample
  */
 
 public class IMAController implements AdErrorEvent.AdErrorListener, AdEvent.AdEventListener {

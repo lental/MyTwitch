@@ -57,9 +57,7 @@ public class PlayerActivity extends MyTwitchNavigationActivity {
             channelName = extras.getString("channelName");
 
             String adTag = IMAUtils.generateAdTag("https://pubads.g.doubleclick.net/gampad/live/ads?iu=[iu]&ius_szs=300x250&sz=640x480&gdfp_req=1&env=vp&output=xml_vast3&url=[url]&correlator=[timestamp]&cust_params=[cust_params]&unviewed_position_start=1&eid=567890291&sdkv=h.3.158.1&sdki=3c0d&scor=1584445166772916&adk=2615417281&osd=2&frm=0&sdr=1&afvsz=200x200%2C250x250%2C300x250%2C336x280%2C450x50%2C468x60%2C480x70&ciu_szs=300x60%2C300x250&ged=ve4_td9_tt2_pd9_la9000_er238.80.394.380_vi0.0.926.735_vp100_eb24171", channelName);
-
             imaController.requestAds(adTag);
-
         }
 
         if (url != null) {
