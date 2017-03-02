@@ -77,11 +77,17 @@ public class ChannelActivity extends MyTwitchNavigationActivity implements Strea
 
         ChannelListFragment listFrag = (ChannelListFragment)
                 getFragmentManager().findFragmentById(R.id.channel_fragment);
+
+        PlayerFragment playerFrag = (PlayerFragment)
+                getFragmentManager().findFragmentById(R.id.player_fragment);
         View channelList = listFrag.getView();
 
         // Checks the orientation of the screen
         int limit = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 400, getResources().getDisplayMetrics());
 
+        if (playerFrag == null) {
+            limit = ViewGroup.LayoutParams.MATCH_PARENT;
+        }
         if (orientation == Configuration.ORIENTATION_LANDSCAPE) {
             layout.setOrientation(LinearLayout.HORIZONTAL);
             channelList.setLayoutParams(new LinearLayout.LayoutParams(limit, ViewGroup.LayoutParams.MATCH_PARENT));
