@@ -20,30 +20,10 @@ import com.example.mlen.mytwitch.recycler.StreamsRecyclerAdapter;
  * onClick, open up PlayerActivity
  */
 public class ChannelActivity extends MyTwitchNavigationActivity {
-    RecyclerView recyclerView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         CoordinatorLayout contentWrapper = (CoordinatorLayout)findViewById(R.id.content_wrapper);
         getLayoutInflater().inflate(R.layout.channel, contentWrapper);
-
-        GetStreamsAsyncTask task = new GetStreamsAsyncTask(new GetStreamsAsyncTask.GetStreamsCallback() {
-            @Override
-            public void onStreams(StreamsRequest streams) {
-                recyclerView.setAdapter(new StreamsRecyclerAdapter(ChannelActivity.this, streams.getStreams()));
-            }
-        });
-
-        recyclerView = (RecyclerView) findViewById(R.id.recycler_wrapper);
-
-        LinearLayoutManager layoutManager = new LinearLayoutManager(this);
-        recyclerView.setLayoutManager(layoutManager);
-
-        DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(recyclerView.getContext(),
-                layoutManager.getOrientation());
-        recyclerView.addItemDecoration(dividerItemDecoration);
-
-        task.execute();
-
     }
 }

@@ -7,8 +7,8 @@
     android:id="@+id/channel_main"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:showIn="@layout/app_bar_main">
-    <android.support.v7.widget.RecyclerView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/recycler_wrapper"></android.support.v7.widget.RecyclerView>
+
+    <fragment class="com.example.mlen.mytwitch.fragments.ChannelListFragment"
+        android:id="@+id/channel_fragment"
+        android:layout_width="match_parent" android:layout_height="match_parent" />
 </LinearLayout>
