@@ -5,6 +5,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.Nullable;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -36,6 +37,7 @@ import com.google.android.exoplayer2.upstream.DefaultHttpDataSourceFactory;
  */
 
 public class PlayerFragment extends Fragment {
+    private final String TAG = this.getClass().getSimpleName();
     private SimpleExoPlayer player;
     private IMAController imaController;
     private static final DefaultBandwidthMeter BANDWIDTH_METER = new DefaultBandwidthMeter();
@@ -56,21 +58,28 @@ public class PlayerFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-        imaController.onResume();
         player.setPlayWhenReady(true);
+        if (imaController != null) {
+            imaController.onResume();
+        }
     }
 
     @Override
     public void onPause() {
         super.onPause();
-        imaController.onPause();
         player.setPlayWhenReady(false);
+        if (imaController != null) {
+            imaController.onPause();
+        }
     }
     @Override
     public void onDestroy() {
         super.onPause();
         player.setPlayWhenReady(false);
-
+        if (imaController != null) {
+            imaController.onDestroy();
+        }
+        player.release();
     }
 
     @Override
@@ -132,4 +141,9 @@ public class PlayerFragment extends Fragment {
         player.prepare(source);
     }
 
+    @Override
+    protected void finalize() throws Throwable {
+        super.finalize();
+        Log.d(TAG, "PlayerFragment Finalized");
+    }
 }

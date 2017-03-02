@@ -124,8 +124,11 @@ public class IMAController implements AdErrorEvent.AdErrorListener, AdEvent.AdEv
                 // AdEventType.CONTENT_PAUSE_REQUESTED is fired immediately before a video
                 // ad is played.
                 mIsAdDisplayed = true;
+
                 // We can either pause or mute
-                mVideoPlayer.setPlayWhenReady(false);
+                if (mVideoPlayer != null) {
+                    mVideoPlayer.setPlayWhenReady(false);
+                }
                 //  mVideoPlayer.setVolume(0);
                 break;
             case CONTENT_RESUME_REQUESTED:
@@ -134,7 +137,9 @@ public class IMAController implements AdErrorEvent.AdErrorListener, AdEvent.AdEv
                 mIsAdDisplayed = false;
 
                 // We can either pause or mute
-                mVideoPlayer.setPlayWhenReady(true);
+                if (mVideoPlayer != null) {
+                    mVideoPlayer.setPlayWhenReady(true);
+                }
                 // mVideoPlayer.setVolume(1);
                 break;
             case ALL_ADS_COMPLETED:
@@ -151,7 +156,9 @@ public class IMAController implements AdErrorEvent.AdErrorListener, AdEvent.AdEv
     @Override
     public void onAdError(AdErrorEvent adErrorEvent) {
         Log.e(TAG, "Ad Error: " + adErrorEvent.getError().getMessage());
-        mVideoPlayer.setPlayWhenReady(true);
+        if (mVideoPlayer != null) {
+            mVideoPlayer.setPlayWhenReady(true);
+        }
     }
 
     public void onPause(){
@@ -162,6 +169,16 @@ public class IMAController implements AdErrorEvent.AdErrorListener, AdEvent.AdEv
     public void onResume(){
         if (mAdsManager != null && mIsAdDisplayed) {
             mAdsManager.resume();
+        }
+    }
+
+    public void onDestroy(){
+        mAdsLoader.contentComplete();
+        mAdsLoader = null;
+
+        if (mAdsManager != null) {
+            mAdsManager.destroy();
+            mAdsManager = null;
         }
     }
 

@@ -4,6 +4,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.design.widget.CoordinatorLayout;
+import android.util.Log;
 import android.widget.RelativeLayout;
 
 import com.example.mlen.mytwitch.R;
@@ -32,10 +33,17 @@ import com.google.android.exoplayer2.upstream.DefaultHttpDataSourceFactory;
  */
 
 public class PlayerActivity extends MyTwitchNavigationActivity {
+    private final String TAG = this.getClass().getSimpleName();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         CoordinatorLayout contentWrapper = (CoordinatorLayout)findViewById(R.id.content_wrapper);
         getLayoutInflater().inflate(R.layout.player, contentWrapper);
+    }
+
+    @Override
+    protected void finalize() throws Throwable {
+        super.finalize();
+        Log.d(TAG, "PlayerActivity Finalized");
     }
 }
