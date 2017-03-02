@@ -3,6 +3,7 @@ package com.example.mlen.mytwitch.recycler;
 import android.content.Context;
 import android.content.Intent;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -16,12 +17,15 @@ import com.example.mlen.mytwitch.R;
  */
 
 public class StreamsRecyclerView extends LinearLayout implements View.OnClickListener {
+    private final String TAG = this.getClass().getSimpleName();
     ImageView previewView;
     TextView titleView;
     TextView gameView;
     TextView viewersView;
 
     String channelName;
+
+    StreamsRecyclerViewClickListener listener;
 
     public StreamsRecyclerView(Context context) {
         super(context);
@@ -61,10 +65,17 @@ public class StreamsRecyclerView extends LinearLayout implements View.OnClickLis
     public void setViewers(int viewers) {
         viewersView.setText(viewers + " viewers");
     }
+
+    public void setStreamRecyclerViewClickListener(StreamsRecyclerViewClickListener listener) {
+        this.listener = listener;
+    }
+
     @Override
     public void onClick(View v) {
-        Intent intent = new Intent(this.getContext(), PlayerActivity.class);
-        intent.putExtra("channelName", channelName);
-        this.getContext().startActivity(intent);
+        if (this.listener != null) {
+            this.listener.onChannelSelected(channelName);
+        } else {
+            Log.e(TAG, "Item clicked but no listener");
+        }
     }
 }

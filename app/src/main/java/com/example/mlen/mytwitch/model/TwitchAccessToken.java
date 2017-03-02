@@ -7,6 +7,7 @@ package com.example.mlen.mytwitch.model;
 public class TwitchAccessToken {
     String token;
     String sig;
+    String channelName;
 
     public TwitchAccessToken(){
 
@@ -28,6 +29,13 @@ public class TwitchAccessToken {
         this.sig = sig;
     }
 
+    public String getChannelName() {
+        return channelName;
+    }
+
+    public void setChannelName(String channelName) {
+        this.channelName = channelName;
+    }
 
     @Override
     public String toString() {

@@ -39,7 +39,6 @@ public class PlayerFragment extends Fragment {
     private SimpleExoPlayer player;
     private IMAController imaController;
     private static final DefaultBandwidthMeter BANDWIDTH_METER = new DefaultBandwidthMeter();
-    String channelName = null;
 
     RelativeLayout wrapper;
     SimpleExoPlayerView simpleExoPlayerView;
@@ -84,6 +83,7 @@ public class PlayerFragment extends Fragment {
 
         imaController = new IMAController(getActivity(), player, wrapper);
         String url = null;
+        String channelName = null;
         if (getActivity().getIntent().getExtras() != null) {
             Bundle extras = getActivity().getIntent().getExtras();
             url = extras.getString("url");
@@ -96,15 +96,7 @@ public class PlayerFragment extends Fragment {
         if (url != null) {
             playVideo(url);
         } else if (channelName != null) {
-            GetAccessTokenAsyncTask task = new GetAccessTokenAsyncTask(new GetAccessTokenAsyncTask.GetAccessTokenCallback() {
-                @Override
-                public void onAccessToken(TwitchAccessToken token) {
-                    if (token != null) {
-                        playVideo(Utils.generateURL(channelName, token));
-                    }
-                }
-            });
-            task.execute(channelName);
+            getURLAndPlay(channelName);
         }
 
     }
@@ -117,6 +109,18 @@ public class PlayerFragment extends Fragment {
                 null, SimpleExoPlayer.EXTENSION_RENDERER_MODE_ON);
         newPlayer.setPlayWhenReady(true);
         return newPlayer;
+    }
+
+    public void getURLAndPlay(String name) {
+        GetAccessTokenAsyncTask task = new GetAccessTokenAsyncTask(new GetAccessTokenAsyncTask.GetAccessTokenCallback() {
+            @Override
+            public void onAccessToken(TwitchAccessToken token) {
+                if (token != null) {
+                    playVideo(Utils.generateURL(token.getChannelName(), token));
+                }
+            }
+        });
+        task.execute(name);
     }
 
     private void playVideo(String url) {

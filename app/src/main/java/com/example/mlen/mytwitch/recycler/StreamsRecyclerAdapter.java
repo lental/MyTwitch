@@ -16,13 +16,15 @@ import com.example.mlen.mytwitch.utils.DownloadImageTask;
 public class StreamsRecyclerAdapter extends RecyclerView.Adapter<StreamsRecyclerViewHolder>{
         LayoutInflater inflater;
         Stream[] streams;
-        public StreamsRecyclerAdapter(Context c, Stream[] streams) {
+        StreamsRecyclerViewClickListener listener;
+        public StreamsRecyclerAdapter(Context c, Stream[] streams, StreamsRecyclerViewClickListener listener) {
             inflater = (LayoutInflater) c.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             this.streams = streams;
+            this.listener = listener;
         }
         @Override
         public StreamsRecyclerViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-            StreamsRecyclerViewHolder vh = new StreamsRecyclerViewHolder(inflater.inflate(R.layout.stream_view, null));
+            StreamsRecyclerViewHolder vh = new StreamsRecyclerViewHolder(inflater.inflate(R.layout.stream_view, null), listener);
             return vh;
         }
 

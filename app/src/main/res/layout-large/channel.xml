@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="horizontal" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/channel_main"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:showIn="@layout/app_bar_main">
+
+    <fragment class="com.example.mlen.mytwitch.fragments.ChannelListFragment"
+        android:id="@+id/channel_fragment"
+        android:layout_weight="1"
+        android:layout_width="400dp"
+        android:layout_height="match_parent" />
+
+
+    <fragment class="com.example.mlen.mytwitch.fragments.PlayerFragment"
+        android:id="@+id/player_fragment"
+        android:layout_weight="1"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+</LinearLayout>

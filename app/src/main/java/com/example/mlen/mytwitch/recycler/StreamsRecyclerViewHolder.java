@@ -13,9 +13,10 @@ import com.example.mlen.mytwitch.R;
 
 public class StreamsRecyclerViewHolder extends RecyclerView.ViewHolder {
     public StreamsRecyclerView recyclerView;
-    public StreamsRecyclerViewHolder(View itemView) {
+    public StreamsRecyclerViewHolder(View itemView, StreamsRecyclerViewClickListener listener) {
         super(itemView);
         recyclerView = (StreamsRecyclerView) itemView.findViewById(R.id.recycler_main);
+        recyclerView.setStreamRecyclerViewClickListener(listener);
     }
 }
 

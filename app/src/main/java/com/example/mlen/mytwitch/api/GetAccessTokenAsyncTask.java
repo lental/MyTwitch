@@ -30,6 +30,7 @@ public class GetAccessTokenAsyncTask extends AsyncTask<String, Void, TwitchAcces
                 String tokenText  = Utils.executeGet("https://api.twitch.tv/api/channels/" + channelName + "/access_token");
                 Gson gson = new Gson();
                 TwitchAccessToken token = gson.fromJson(tokenText, TwitchAccessToken.class);
+                token.setChannelName(channelName);
                 return token;
             } catch (IOException e) {
                 return null;
