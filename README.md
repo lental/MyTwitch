@@ -11,15 +11,26 @@ There are three Activities:
 * PlayerActivity: an implementation of ExoPlayer playback
 
 To make this I used:
+
+*APIs and Libraries*
 * Twitch's stream and auth_token APIs
 * Google IMA
+* ExoPlayer
 * gson
 * okhttp
+
+*Android features*
+* Fragments
 * RecyclerView
-* ExoPlayer
-* AsyncTasks
 * Navigation Views
+* AsyncTasks
+* Services
+* Receivers
+* SharedPreferences
+
+*Tools*
 * Charles
+
 
 Time:
 Session 1: ~5 hours for most of the app

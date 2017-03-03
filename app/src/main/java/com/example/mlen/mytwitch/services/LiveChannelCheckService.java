@@ -4,11 +4,13 @@ import android.app.IntentService;
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.util.Log;
 
 import com.example.mlen.mytwitch.R;
+import com.example.mlen.mytwitch.application.MyTwitchApplication;
 import com.example.mlen.mytwitch.model.StreamRequest;
 import com.example.mlen.mytwitch.utils.Utils;
 import com.google.gson.Gson;
@@ -31,26 +33,38 @@ public class LiveChannelCheckService extends IntentService {
 
     @Override
     protected void onHandleIntent(Intent intent) {
-        // Cannot use extras because they don't get passed through the broadcast
-//        if (intent.getExtras() != null) {
-            String userName = "doublelift"; //intent.getExtras().getString("userName");
-            try {
-                String responseText = Utils.executeGet("https://api.twitch.tv/kraken/streams/" + userName);
 
-                GsonBuilder gsonBuilder = new GsonBuilder();
-                Gson gson = gsonBuilder.create();
+        SharedPreferences livePrefs = getSharedPreferences(MyTwitchApplication.LIVE_CHECK_PREFS, 0);
+        String userName = livePrefs.getString(MyTwitchApplication.LIVE_CHECK_PREFS_CHANNEL_NAME, null);
+        if (userName == null) {
+            Log.e(TAG, "No Username in preferences to check");
+        }
+        try {
+            String responseText = Utils.executeGet("https://api.twitch.tv/kraken/streams/" + userName);
 
-                StreamRequest requestData = gson.fromJson(responseText, StreamRequest.class);
-                Log.d(TAG, "Hello");
-                if (requestData.getStream() == null) {
-                    sendLiveNotification(1, "Stream not open", "Stream is not yet live");
-                } else {
-                    sendLiveNotification(1, "Stream is live", userName + " is now live!");
+            GsonBuilder gsonBuilder = new GsonBuilder();
+            Gson gson = gsonBuilder.create();
+
+            StreamRequest requestData = gson.fromJson(responseText, StreamRequest.class);
+
+            boolean isLive = livePrefs.getBoolean(MyTwitchApplication.LIVE_CHECK_PREFS_IS_LIVE, false);
+            if (requestData.getStream() == null) {
+                // Not live at the moment.  If we saved live then switch
+                if (isLive) {
+                    sendLiveNotification(1, "Stream has stopped", userName + " Has now stopped streaming");
+                    livePrefs.edit().putBoolean(MyTwitchApplication.LIVE_CHECK_PREFS_IS_LIVE, false).apply();
                 }
-            } catch (Exception e) {
-
+            } else {
+                // Live.  If we don't have memory of being live, set it to true
+                if (!isLive) {
+                    sendLiveNotification(1, "Stream is live", userName + " is now live!");
+                    livePrefs.edit().putBoolean(MyTwitchApplication.LIVE_CHECK_PREFS_IS_LIVE, true).apply();
+                }
             }
-//        }
+
+        } catch (Exception e) {
+            Log.e(TAG, "Exception when handling stream check", e);
+        }
 
     }
 
