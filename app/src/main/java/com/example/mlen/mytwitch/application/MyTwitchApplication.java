@@ -19,12 +19,14 @@ public class MyTwitchApplication extends Application {
         super.onCreate();
 
         Intent intent = new Intent(this, LiveChannelCheckReceiver.class);
+        // putExtra does not work on broadcast
+        //intent.putExtra("userName","doublelift");
 
         // Create a PendingIntent to be triggered when the alarm goes off
         final PendingIntent pIntent = PendingIntent.getBroadcast(this, LiveChannelCheckReceiver.REQUEST_CODE,
                 intent, PendingIntent.FLAG_UPDATE_CURRENT);
 
         AlarmManager alarm = (AlarmManager) this.getSystemService(Context.ALARM_SERVICE);
-        alarm.setInexactRepeating(AlarmManager.ELAPSED_REALTIME, 1, 10000, pIntent);
+        alarm.setInexactRepeating(AlarmManager.ELAPSED_REALTIME, 1, 5000, pIntent);
     }
 }
