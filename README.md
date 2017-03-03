@@ -27,11 +27,13 @@ To make this I used:
 * Services
 * Receivers
 * SharedPreferences
+* Tablet/Mobile layouts
 
 *Tools*
 * Charles
 
 
 Time:
-Session 1: ~5 hours for most of the app
-Sesssion 2: 1.5 hours for IMA integration
+* Session 1: ~5 hours for most of the app
+* Sesssion 2: 1.5 hours for IMA integration
+* Session 3: ~4 hours Fragments, Tablet/Mobile views, Periodic Stream test, colors & logo, memory fixes

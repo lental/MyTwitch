@@ -8,7 +8,6 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 
 import com.example.mlen.mytwitch.receivers.LiveChannelCheckReceiver;
-import com.example.mlen.mytwitch.services.LiveChannelCheckService;
 
 /**
  * Created by mlen on 3/2/17.

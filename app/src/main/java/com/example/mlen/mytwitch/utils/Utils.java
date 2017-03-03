@@ -1,15 +1,9 @@
 package com.example.mlen.mytwitch.utils;
 
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-
 import com.example.mlen.mytwitch.model.TwitchAccessToken;
 
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.UnsupportedEncodingException;
-import java.net.HttpURLConnection;
-import java.net.URL;
 import java.net.URLEncoder;
 
 import okhttp3.OkHttpClient;
