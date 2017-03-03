@@ -14,15 +14,18 @@
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar">
         </activity>
+
         <activity android:name=".activity.PlayerActivity"
             android:theme="@style/AppTheme.NoActionBar"
-            android:configChanges="keyboardHidden|orientation|screenSize"></activity>
+            android:configChanges="keyboardHidden|orientation|screenSize">
+
+        </activity>
+
         <activity android:name=".activity.ChannelActivity"
             android:configChanges="orientation|screenSize"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -31,7 +34,9 @@
             android:name=".receivers.LiveChannelCheckReceiver"
             android:process=":remote" >
         </receiver>
-        <service android:name=".services.LiveChannelCheckService"></service>
+        <service android:name=".services.LiveChannelCheckService">
+
+        </service>
     </application>
     <uses-permission android:name="android.permission.INTERNET"></uses-permission>
 </manifest>

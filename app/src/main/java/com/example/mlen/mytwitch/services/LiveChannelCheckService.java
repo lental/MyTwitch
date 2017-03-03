@@ -56,12 +56,12 @@ public class LiveChannelCheckService extends IntentService {
 
     private void sendLiveNotification(int id, String title, String text) {
 
-        Bitmap icon = BitmapFactory.decodeResource(this.getResources(), R.drawable.mail2);
+        Bitmap icon = BitmapFactory.decodeResource(this.getResources(), R.mipmap.logo);
 
         Notification noti = new Notification.Builder(this)
                 .setContentTitle(title)
                 .setContentText(text)
-                .setSmallIcon(R.drawable.mail1)
+                .setSmallIcon(R.drawable.logo_white)
                 .setLargeIcon(icon)
                 .build();
 
